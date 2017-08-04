@@ -29,4 +29,5 @@ values
 
    	
 --多表查询
+select * from activity where content like '%吉他%' or theme like '%吉他%' or introduction like '%吉他%';
 select * from activity_user as au left join activity as a on a.ID =au.Activity_id left join User as u on u.ID=au.user_id

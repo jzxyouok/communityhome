@@ -1,6 +1,6 @@
 package action;
 
-import dao.implement.Mysql;
+import util.Mysql;
 import entity.Community;
 
 import java.sql.Connection;

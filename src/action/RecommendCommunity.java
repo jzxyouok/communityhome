@@ -1,14 +1,13 @@
 package action;
 
 import dao.UserCommInforDao;
-import dao.implement.Mysql;
+import util.Mysql;
 import dao.implement.UserCommInforDaoIm;
 import entity.Community;
 import entity.User;
 import util.GetCommunity;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -19,6 +18,7 @@ public class RecommendCommunity extends GetCommunity{
     private static final UserCommInforDao usercomdaoim = new UserCommInforDaoIm();
     private User user = null;
     private List<Community> joined = null;
+
 
     public RecommendCommunity(User user){
         this.user = user;

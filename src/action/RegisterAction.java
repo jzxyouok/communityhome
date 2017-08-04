@@ -1,7 +1,7 @@
 package action;
 
-import dao.implement.Mysql;
-import util.*;
+import util.Mysql;
+
 import java.sql.*;
 
 /**

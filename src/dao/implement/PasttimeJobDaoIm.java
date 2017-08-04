@@ -3,8 +3,8 @@ package dao.implement;
 import dao.PasttimeJobDao;
 import entity.PasttimeJob;
 import util.Mapping;
+import util.Mysql;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 

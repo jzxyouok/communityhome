@@ -7,19 +7,10 @@ package servlet;
 
 import action.*;
 import dao.UserDao;
-import dao.implement.Mysql;
 import dao.implement.*;
 import entity.User;
 
 import java.io.*;
-import java.security.Principal;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;

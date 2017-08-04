@@ -4,19 +4,11 @@ package servlet;
  * Created by 黄宇航 on 2017/7/30 20:56
  * 修改、完善资料
  */
-import action.*;
-import dao.implement.Mysql;
+import util.Mysql;
 import entity.PasttimeJob;
 import entity.User;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

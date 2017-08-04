@@ -66,7 +66,7 @@ public class HomePageServlet extends HttpServlet {
 
 			request.setAttribute("buttonURL", "login1.jsp");
 			request.setAttribute("welcome", "登录");
-			request.setAttribute("loginURL", "LoginServlet");
+			request.setAttribute("loginURL", "login1.jsp");
 			request.setAttribute("login", "登录");
 			request.setAttribute("registerURL", "register1.jsp");
 			request.setAttribute("register", "注册");

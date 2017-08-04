@@ -1,6 +1,6 @@
 package action;
 
-import dao.implement.Mysql;
+import util.Mysql;
 import entity.Community;
 import util.GetCommunity;
 
@@ -13,13 +13,16 @@ import java.util.Set;
 public class SearchCommunity extends GetCommunity{
     private String searchtext;
 
-    public SearchCommunity(String searchtext) {
+    public SearchCommunity(String searchtext){
         this.searchtext = searchtext;
-        con = Mysql.getCon();
     }
 
     public List<Community> getCommunities()
     {
+        if (con == null){
+            con = Mysql.getCon();
+        }
+
         keywords = searchtext.split(" ");
 
         if (keywords == null){

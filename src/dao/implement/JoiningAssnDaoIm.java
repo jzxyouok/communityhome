@@ -3,9 +3,9 @@ package dao.implement;
 import dao.JoiningAssnDao;
 import entity.JoiningAssn;
 import util.Mapping;
+import util.Mysql;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

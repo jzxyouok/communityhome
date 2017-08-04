@@ -1,8 +1,13 @@
 package servlet;
 
+import action.SearchActivity;
 import action.SearchCommunity;
+import action.SearchPasttimeJob;
+import entity.Activity;
 import entity.Community;
+import entity.PasttimeJob;
 import util.GetCommunity;
+import util.Mapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,13 +35,29 @@ public class SearchServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String searchtext = request.getParameter("searchtext");
-        SearchCommunity searchcommunity = new SearchCommunity(searchtext);
+        GetCommunity searchcommunity = new SearchCommunity(searchtext);
+        SearchActivity searchactivity = new SearchActivity(searchtext);
+        SearchPasttimeJob searchpasttimejob = new SearchPasttimeJob(searchtext);
         List<Community> communities = searchcommunity.getCommunities();
+        List<Activity> activities = searchactivity.getActivities();
+        List<PasttimeJob> pasttimejobs = searchpasttimejob.getPasttimeJobs();
 
         if (communities != null && communities.size() > 0){
-            session.setAttribute("serachresult",communities);
+            session.setAttribute("communities",communities);
         }else{
-            session.setAttribute("serachresult",null);
+            session.setAttribute("communities",null);
+        }
+
+        if (activities != null && activities.size() > 0){
+            session.setAttribute("activities",activities);
+        }else{
+            session.setAttribute("activities",null);
+        }
+
+        if (pasttimejobs != null && pasttimejobs.size() > 0){
+            session.setAttribute("pasttimejobs",pasttimejobs);
+        }else{
+            session.setAttribute("pasttimejobs",null);
         }
 
         request.getRequestDispatcher("/搜索结果.jsp").forward(request, response);

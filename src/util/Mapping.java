@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.implement.Mysql;
 import entity.*;
 
 public class Mapping {
@@ -44,7 +43,7 @@ public class Mapping {
 	 * @return activityµÄ
 	 */
 	public static List<Activity> mappingActivities(String sql){
-		Connection connection = DatabaseConn.getConnection();
+		Connection connection = Mysql.getCon();
 		ArrayList<Activity> activities = null;
 		try {
 			activities = new ArrayList<>();
@@ -277,6 +276,7 @@ public class Mapping {
 				temp.setJobid(rs.getInt("jobid"));
 				temp.setCreatetime(rs.getTimestamp("createtime"));
 				temp.setEndtime(rs.getTimestamp("endtime"));
+				temp.setName(rs.getString("name"));
 				temp.setGenre(rs.getString("genre"));
 				temp.setContacts(rs.getString("contacts"));
 				temp.setSummary(rs.getString("summary"));

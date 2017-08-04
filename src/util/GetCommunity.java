@@ -1,6 +1,5 @@
 package util;
 
-import dao.implement.Mysql;
 import entity.Community;
 
 import java.sql.Connection;
@@ -20,7 +19,7 @@ abstract public class GetCommunity {
     protected String keywords[];
     protected Connection con = null;
 
-    abstract  public List<Community> getCommunities();
+    abstract public List<Community> getCommunities();
 
     protected Set<Integer> makeCommunityIdSet(){
         Set<Integer> idset = new HashSet<>();
