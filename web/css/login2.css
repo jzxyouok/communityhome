@@ -1,0 +1,57 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: white;
+    height: 100%;
+    font-family: "微软雅黑";
+}
+
+.main {
+    margin-top: 5%;
+}
+form input[type="text"], form input[type="password"] {
+    padding: 5px;
+    outline: none;
+    width: 50%;
+    margin-bottom: 2%;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-size: 20px;
+}
+
+form input[type="text"]:focus, form input[type="password"]:focus {
+    outline: 1px solid blue;
+    -moz-outline-radius: 6px;
+}
+
+form input[type="radio"] {
+    margin-bottom: 2%;
+}
+
+.Tip {
+    font-style: italic;
+    color: #366aff;
+}
+
+form input[type="submit"] {
+    width: 54%;
+    height: 50px;
+    margin-top: 7px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid rgba(0, 0, 0, .49);
+    background-color: #3cda8a;
+    border-radius: 6px;
+
+}
+
+input[type="submit"]:hover {
+    background-color: #44e9a0;
+    margin-top: 10px;
+    cursor: pointer; /*光标变为一只手*/
+}
