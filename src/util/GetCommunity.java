@@ -118,7 +118,7 @@ abstract public class GetCommunity {
 
     protected void dealString(){
         for (int i = 0;i < keywords.length;i++){
-            if (keywords[i].lastIndexOf("社") == (keywords[i].length() - 1)){
+            if (keywords[i].length() > 1 && keywords[i].lastIndexOf("社") == (keywords[i].length() - 1)){
                 keywords[i] = keywords[i].substring(0,keywords[i].length() - 1);
             }else if (keywords[i].length() > 2 && keywords[i].lastIndexOf("社团")  == (keywords[i].length() - 2) ||
                     keywords[i].lastIndexOf("协会") == (keywords[i].length() - 2)){

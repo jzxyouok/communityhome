@@ -28,62 +28,60 @@ public class HomePageServlet extends HttpServlet {
 	}
 
 	/**
-		 * The doGet method of the servlet. <br>
-		 *
-		 * This method is called when a form has its tag value method equals to get.
-		 * 
-		 * @param request the request send by the client to the server
-		 * @param response the response send by the server to the client
-		 * @throws ServletException if an error occurred
-		 * @throws IOException if an error occurred
-		 */
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 *
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-		 * The doPost method of the servlet. <br>
-		 *
-		 * This method is called when a form has its tag value method equals to post.
-		 * 
-		 * @param request the request send by the client to the server
-		 * @param response the response send by the server to the client
-		 * @throws ServletException if an error occurred
-		 * @throws IOException if an error occurred
-		 */
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 *
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
-/*		²âÊÔ
+/*		ï¿½ï¿½ï¿½ï¿½
  	 	User usert = new User();
-		usert.setPicture("community/¼ªËûÉç.jpg");
+		usert.setPicture("community/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.jpg");
 		session.setAttribute("user", usert);*/
 		User user = (User) session.getAttribute("user");
-		
-		//ÕâÀïÓÃÀ´ÅĞ¶ÏÊÇ·ñµÇÂ¼£¬Èç¹ûµÇÂ¼ÁËÄÇÃ´£¬°´Å¥µÄ×Ö»á±ä³ÉÎÒµÄÉçÍÅ£¬Í·Ïñ»á±ä³ÉÓÃ»§µÄÍ·Ïñ
+
+		//æ£€æµ‹æ˜¯å¦ç™»å½•
 		if(user==null){
-			request.setAttribute("buttonValue", "µÇÂ½");
-			//ÕâÊÇÄ¬ÈÏµÄÍ·Ïñ
+			request.setAttribute("buttonValue", "ç™»å½•");
+
 			request.setAttribute("userPicture", "img/49E89BEA3F1B3F1AC788F5F94C4A457F.png");
-			//´Ë´¦µÄ#ĞèÒªĞŞ¸ÄÎªµÇÂ½Ò³ÃæµÄurl
+
 			request.setAttribute("buttonURL", "login1.jsp");
-			request.setAttribute("welcome", "¹ÜÀíÏµÍ³µÇÂ¼");
+			request.setAttribute("welcome", "ç™»å½•");
 			request.setAttribute("loginURL", "LoginServlet");
-			request.setAttribute("login", "µÇÂ½");
+			request.setAttribute("login", "ç™»å½•");
 			request.setAttribute("registerURL", "register1.jsp");
-			request.setAttribute("register", "×¢²á");
+			request.setAttribute("register", "æ³¨å†Œ");
 		}else {
-			request.setAttribute("buttonValue", "ÎÒµÄÉçÍÅ");
+			request.setAttribute("buttonValue", "æˆ‘çš„ç¤¾å›¢");
 			request.setAttribute("userPicture", user.getPicture());
-			//´Ë´¦µÄ#ĞèÒªĞŞ¸ÄÎªÎÒµÄÉçÍÅµÄurl
+
 			request.setAttribute("buttonURL", "#");
-			request.setAttribute("welcome", user.getUsername()+" ÄãºÃ£¬»¶Ó­À´µ½ÉçÍÅÖ®¼Ò");
+			request.setAttribute("welcome", user.getUsername()+" ä½ å¥½ï¼Œæ¬¢è¿æ¥åˆ°ç¤¾å›¢ä¹‹å®¶");
 			request.setAttribute("loginURL", "#");
 			request.setAttribute("login", user.getUsername());
-			//×¢ÏúµÄservlet
+			//æ³¨é”€
 			request.setAttribute("registerURL", "WriteOff");
-			request.setAttribute("register", "×¢Ïú");
+			request.setAttribute("register", "æ³¨é”€");
 		}
 		CommunityDao communityDao = new CommunityDaoIm();
 		List<Community> communities = communityDao.queryAll();
@@ -91,7 +89,7 @@ public class HomePageServlet extends HttpServlet {
 		for (Community community : communities) {
 			communitiesHashMap.put(community, communityDao.queryAllUser(community.getId()).size());
 		}
-		//°´ÕÕÈËÊıÅÅĞò
+		//æŒ‰äººæ•°æ’åº
 		communities.sort(new Comparator<Community>() {
 			@Override
 			public int compare(Community o1, Community o2) {
@@ -107,10 +105,10 @@ public class HomePageServlet extends HttpServlet {
 				request.setAttribute("recommend_"+i, communities.get(i-1));
 			}
 			else {
-				//Èç¹ûÉçÍÅµÄÊıÁ¿Ğ¡ÓÚ5¾ÍÉèÖÃÎª¶«±±´óÑ§µÄÍ¼Æ¬
+				//è¿™æ˜¯ä¸€æ‰€å¤§å­¦
 				Community community = new Community();
-				community.setIntroduce("ÕâÊÇÒ»Ëù´óÑ§");
-				community.setPicture("community/¶«±±´óÑ§.jpg");
+				community.setIntroduce("è¿™æ˜¯ä¸€æ‰€å¤§å­¦");
+				community.setPicture("community/ä¸œåŒ—å¤§å­¦.jpg");
 				request.setAttribute("recommend_"+i, community);
 			}
 		}
@@ -119,12 +117,12 @@ public class HomePageServlet extends HttpServlet {
 	}
 
 	/**
-		 * Initialization of the servlet. <br>
-		 *
-		 * @throws ServletException if an error occurs
-		 */
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
 	public void init() throws ServletException {
-		
+
 	}
 
 }
