@@ -276,11 +276,14 @@ public class Mapping {
 
 				temp.setJobid(rs.getInt("jobid"));
 				temp.setCreatetime(rs.getTimestamp("createtime"));
-				temp.setStarttime(rs.getTimestamp("starttime"));
 				temp.setEndtime(rs.getTimestamp("endtime"));
 				temp.setGenre(rs.getString("genre"));
 				temp.setContacts(rs.getString("contacts"));
 				temp.setSummary(rs.getString("summary"));
+				temp.setWage(rs.getString("wage"));
+				temp.setWorktime(rs.getString("worktime"));
+				temp.setAddress(rs.getString("address"));
+				temp.setStatus(rs.getInt("status") == 1?true:false);
 				pasttimejobs.add(temp);
 			}
 

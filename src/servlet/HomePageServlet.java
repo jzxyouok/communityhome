@@ -52,11 +52,10 @@ public class HomePageServlet extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+
 		HttpSession session = request.getSession();
-/*		����
- 	 	User usert = new User();
-		usert.setPicture("community/������.jpg");
-		session.setAttribute("user", usert);*/
 		User user = (User) session.getAttribute("user");
 
 		//检测是否登录

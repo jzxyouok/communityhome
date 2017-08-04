@@ -6,6 +6,7 @@ package servlet;
  */
 import action.*;
 import dao.implement.Mysql;
+import entity.PasttimeJob;
 import entity.User;
 
 import java.io.*;
@@ -23,8 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "ModifyData", urlPatterns = "/ModifyData")
-public class ModifyData extends HttpServlet{
+@WebServlet(name = "ModifyUserData", urlPatterns = "/ModifyUserData")
+public class ModifyUserData extends HttpServlet{
     private static final long serialVersionUID = 1L;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -34,6 +35,7 @@ public class ModifyData extends HttpServlet{
         response.setContentType("text/html;charset=utf-8");
 
         HttpSession session = request.getSession();
+        PasttimeJob pasttimejob = (PasttimeJob)session.getAttribute("pasttimejob");
         User user = (User)session.getAttribute("user");
         String picture = request.getParameter("picture");
         String school = request.getParameter("school");
@@ -71,7 +73,7 @@ public class ModifyData extends HttpServlet{
             flag = true;
         }
 
-        if (studentid > 20000000){
+        if (studentid > 0){
             user.setStudentid(studentid);
 
             if(flag){

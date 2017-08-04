@@ -26,8 +26,9 @@ public class PasttimeJobDaoIm implements PasttimeJobDao {
 
     @Override
     public boolean addPasttimeJobDao(PasttimeJob pasttimejob) {
-        return Mysql.add("INSERT INTO pasttimejob(starttime,endtime,genre,contacts,summary) VALUES(?,?,?,?,?)",pasttimejob.getStarttime(),
-                pasttimejob.getEndtime(),pasttimejob.getGenre(),pasttimejob.getContacts(),pasttimejob.getSummary());
+        return Mysql.add("INSERT INTO pasttimejob(endtime,genre,contacts,summary,wage,worktime,address) VALUES(?,?,?,?,?,?,?)",
+                pasttimejob.getEndtime(),pasttimejob.getGenre(),pasttimejob.getContacts(),pasttimejob.getSummary()
+                ,pasttimejob.getWage(),pasttimejob.getWorktime(),pasttimejob.getAddress());
     }
 
     @Override
@@ -37,7 +38,7 @@ public class PasttimeJobDaoIm implements PasttimeJobDao {
 
     @Override
     public List<PasttimeJob> queryByTime(Date starttime) {
-        return Mapping.mappingPasttimeJob("select * from joiningassn where starttime > '"+ starttime +"' ");
+        return Mapping.mappingPasttimeJob("select * from joiningassn where creattime > '"+ starttime +"' ");
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PasttimeJobDaoIm implements PasttimeJobDao {
 
     @Override
     public List<PasttimeJob> queryByGenre(String genre) {
-        return Mapping.mappingPasttimeJob("select * from joiningassn where genre = " + genre);
+        return Mapping.mappingPasttimeJob("select * from joiningassn where genre like '%" + genre + "%'");
     }
 
     @Override
