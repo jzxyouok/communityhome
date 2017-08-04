@@ -1,8 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>社团人员管理</title>
+<script>
+function MM_over(mmObj) {
+	var mSubObj = mmObj.getElementsByClassName("detail")[0];
+	mSubObj.style.display = "block";
+	mSubObj.style.backgroundImage="url('img/48-120P5144933-50.jpg')";
+}
+function MM_out(mmObj) {
+	var mSubObj = mmObj.getElementsByClassName("detail")[0];
+	mSubObj.style.display = "none";
+	
+}
+</script>
 <style>
 	*{
 		margin:0px;
@@ -79,11 +91,11 @@
 		position:relative;
 		cursor:pointer;
 		background-color:#0C0;
-		width:90px;
-		height:30px;
+		width:160px;
+		height:35px;
 		border-radius:5px;
-		left:38%;
-		top:80px;
+		left:40%;
+		top:70px;
 	}
 	.button button:hover{
 		background-color:#6C0;
@@ -124,6 +136,25 @@
 		color:white;
 		font-size:14px;
 	}	
+	.detail{
+		width:620px;
+		height:300px;
+		display:none;
+		position:relative;
+		left:13%;
+		top:0px;
+		z-index:100;
+	}
+	.delete{
+		position:relative;
+		left:63%;
+		width:60px;
+		border-radius:5px;
+		background-color:#0C0;
+	}
+	.delete:hover{
+		background-color:#6C0;
+	}
 </style>
 </head>
 <body>
@@ -147,12 +178,18 @@
         <hr /><hr />
         </div>
         <div class="list_middle">
-        	<div class="activity">
+        	<div class="activity" onmouseover="MM_over(this)" onmouseout="MM_out(this)">
             	<font class="acname">纸张搭桥</font>
                 <font class="acdate">星期六</font>
                 <font class="acaddress">信息B222</font>
                 <font class="acorganization">CSDN</font>
+                <!--后面每个位置均放上这个button即可-->
+                <button class="delete" style="font-size:16px">删除</button>
                 <hr />
+                <!--详细信息写到这里-->
+                <div class="detail"> 
+  					<p>活动一些属性放到这里</p>
+                </div>
             </div>
             <div class="activity">
             	<font class="acname">纸张搭桥</font>
@@ -210,7 +247,7 @@
                 <font class="acorganization">CSDN</font>
                 <hr />
             </div>
-            <div class="activity">
+            <div class="activity" onmouseover="MM_over(this)" onmouseout="MM_out(this)">
             	<font class="acname">纸张搭桥</font>
                 <font class="acdate">星期六</font>
                 <font class="acaddress">信息B222</font>
@@ -219,8 +256,8 @@
             </div>
         </div>
         <div class="button">
-        	<button style="font-size:16px">添加</button>
-            <button style="font-size:16px">删除</button>
+        	<button style="font-size:18px">添加</button>
+           
         </div>
     </div>
        <div class="footer">
@@ -244,3 +281,4 @@
     </div>
 </body>
 </html>
+

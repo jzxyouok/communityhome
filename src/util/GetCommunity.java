@@ -26,9 +26,11 @@ abstract public class GetCommunity {
         Set<Integer> idset = new HashSet<>();
 
         for (int i = 0;i < keywords.length;i++){
-            getCommunityId(idset,"select * from community where name like '%" + keywords[i] + "%'" +
-                    " or introduction like '%" + keywords[i] + "%'" +
-                    " or type like '%" + keywords[i] + "%'");
+            if (keywords[i].length() > 1){
+                getCommunityId(idset,"select * from community where name like '%" + keywords[i] + "%'" +
+                        " or introduction like '%" + keywords[i] + "%'" +
+                        " or type like '%" + keywords[i] + "%'");
+            }
         }
 
         return idset;
@@ -47,25 +49,18 @@ abstract public class GetCommunity {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            try {
-                statement.close();
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
-    protected List<Community> getCommunities(Set<Integer> assnidset){
+    protected List<Community> getCommunities(Set<Integer> idset){
         List<Community> communities = new ArrayList<>();
         int i = 0;
-        int len = assnidset.size();
+        int len = idset.size();
         int temp[] = new int[len];
         Boolean isused[] = new Boolean[len];
         Random random = new Random(Integer.valueOf(spf.format(new Date())));
 
-        for (int num:assnidset){
+        for (int num:idset){
             temp[i++] = num;
         }
 

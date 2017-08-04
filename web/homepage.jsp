@@ -1,4 +1,4 @@
-﻿<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
 <html>
 <head>
 <meta charset="utf-8">
@@ -634,12 +634,12 @@
 <div id="search_box">
     <form id="search_form" method="post" action="SearchServlet">
         <input type="text" name="searchtext" id="s" value="搜索从这里开始…" class="swap_value" />
-        <input type="image" src="img/btn_search_box.gif" width="27" height="24" id="go" alt="Search" title="Search" />
+        <input type="image" src="img/btn_search_box.gif" width="27" height="24" id="go" alt="Search" 				         title="Search" />
     </form>
 </div>
 <div class="dz">
 <!--登录、注册-->
-<a class="enter" href="login1.jsp">登录<a><span class="huo">&nbsp;|&nbsp;</span><a class="enroll" href="register1.jsp">注册</a>
+<a class="enter" href="${loginURL }">${login}<a><span class="huo">&nbsp;|&nbsp;</span><a class="enroll" href="${registerURL }">${register}</a>
 </div>
 <!--标题栏四个选项，对应其他界面-->
 <div class="title_1"><a href="#">社团</a></div>
@@ -715,7 +715,7 @@
         <!--右侧栏目登录，名字不同但链接同上一个登录页面-->
         <p style="font-size:15px">${welcome }</p></div>
     	<div class="person_photo"><img src="${userPicture }" width="83" height="83"></div>
-        <a class="registers" href="login1.jsp">
+        <a class="registers" href="${buttonURL }">
         <div class="register" style="color:#FFF" align="center">${buttonValue }</div></a>
         <div class="from" align="center" style="font-size:14px">百亿项目组出品</div>
     </div>

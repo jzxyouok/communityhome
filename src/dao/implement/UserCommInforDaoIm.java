@@ -5,7 +5,7 @@ import entity.Activity;
 import entity.Community;
 import util.Mapping;
 
-public class UserCommInfoDaoIm implements UserCommInforDao {
+public class UserCommInforDaoIm implements UserCommInforDao {
 
 	@Override
 	public int followComm(int comID, int uerID) {

@@ -9,6 +9,6 @@ PRIMARY KEY (Community_id,user_id)
 --²åÈëÊı¾İ
 insert into community_user(Community_id,user_id)
 values
-	(1000,1000),
+	(1001,1000),
 	(1000,1001),
 	(1000,1002);

@@ -58,7 +58,7 @@ public class RegisterServlet  extends HttpServlet {
             user.setUsername(username);
             user.setPassword(password);
             user.setSchool(school);
-            user.setPicture("null.jpg");/*默认头像*/
+            user.setPicture("img/49E89BEA3F1B3F1AC788F5F94C4A457F.png");/*默认头像*/
             user.setMailbox(address);
             userdaoim.addUser(username,address,password,"null.jpg","#",0,"#","#","#","#",school);
             user.setID(RegisterAction.getId(username));

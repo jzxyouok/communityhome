@@ -1,15 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>搜索结果</title>
+<script language="javascript" type="text/javascript" src="js/jquery-1.1.3.1.pack.js"></script>
+<script src="js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js.下载"></script>
 <script type="text/javascript" src="js/jquery.pagination.js.下载"></script>
-<script>
-	$(document).ready(function() {
+	<script>
+	$(function() {
+    swapValues = [];
+    $(".swap_value").each(function(i){
+        swapValues[i] = $(this).val();
+        $(this).focus(function(){
+            if ($(this).val() == swapValues[i]) {
+                $(this).val("");
+            }
+        }).blur(function(){
+            if ($.trim($(this).val()) == "") {
+                $(this).val(swapValues[i]);
+            }
+        });
+    });
+});
+$(document).ready(function() {
 	$("#Pagination").pagination("15");
 });
 </script>
+
 <style>
 	*{
 		margin:0px;
@@ -40,6 +58,28 @@
 		left:8.125em;/*130px*/
 		top:1.5em;/*12px*/
 		}
+		#search_box {
+   		 width: 201px;
+   		 height: 31px;
+   		 background: url(img/bg_search_box.gif);
+	   	 position:relative;
+	     left:70.42%;/*950px;*/
+	     top:30px;
+    }
+    #search_box #s {
+    	 float: left;
+    	 padding: 0;
+    	 margin: 6px 0 0 6px;
+    	 border: 0;
+    	 width: 159px;
+    	 background: none;
+    	 font-size: .8em;
+		 outline:none;
+ 	}
+	#search_box #go {
+   	 	 float: right;
+    	 margin: 3px 4px 0 0;
+	}
 	.list{
 		width:65%;
 		height:590px;
@@ -117,7 +157,7 @@
 
 	.pages {
 		width:720px;
-		margin:200px auto 800px 26%;
+		margin:750px auto 0px 26%;
 }
 	.pages #Pagination {
   		float: left;
@@ -261,7 +301,13 @@
 	<div class="logo">
 		<img src="img/150017160818052.png">
 	</div>
-
+	<div id="search_box">
+		<form id="search_form" method="post" action="#">
+			<input type="text" id="s" value="搜索从这里开始…" class="swap_value" />
+			<input type="image" src="img/btn_search_box.gif" width="27" height="24" id="go" 
+            alt="Search" title="Search" />
+		</form>
+	</div>
 	<div class="list">
     	<div class="list_top">
         	<font>根据搜索内容填入适当的表头</font>

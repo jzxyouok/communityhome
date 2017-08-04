@@ -20,7 +20,6 @@ import entity.User;
 public class HomePageServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final String JSP_PATH="/";
 	public HomePageServlet() {
 		super();
 	}
@@ -29,53 +28,62 @@ public class HomePageServlet extends HttpServlet {
 	}
 
 	/**
-	 * The doGet method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to get.
-	 *
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
+		 * The doGet method of the servlet. <br>
+		 *
+		 * This method is called when a form has its tag value method equals to get.
+		 * 
+		 * @param request the request send by the client to the server
+		 * @param response the response send by the server to the client
+		 * @throws ServletException if an error occurred
+		 * @throws IOException if an error occurred
+		 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
-	 *
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
+		 * The doPost method of the servlet. <br>
+		 *
+		 * This method is called when a form has its tag value method equals to post.
+		 * 
+		 * @param request the request send by the client to the server
+		 * @param response the response send by the server to the client
+		 * @throws ServletException if an error occurred
+		 * @throws IOException if an error occurred
+		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
-/*		æµ‹è¯•
+/*		²âÊÔ
  	 	User usert = new User();
-		usert.setPicture("community/å‰ä»–ç¤¾.jpg");
+		usert.setPicture("community/¼ªËûÉç.jpg");
 		session.setAttribute("user", usert);*/
 		User user = (User) session.getAttribute("user");
-
-		//è¿™é‡Œç”¨æ¥åˆ¤æ–­æ˜¯å¦ç™»å½•ï¼Œå¦‚æœç™»å½•äº†é‚£ä¹ˆï¼ŒæŒ‰é’®çš„å­—ä¼šå˜æˆæˆ‘çš„ç¤¾å›¢ï¼Œå¤´åƒä¼šå˜æˆç”¨æˆ·çš„å¤´åƒ
+		
+		//ÕâÀïÓÃÀ´ÅĞ¶ÏÊÇ·ñµÇÂ¼£¬Èç¹ûµÇÂ¼ÁËÄÇÃ´£¬°´Å¥µÄ×Ö»á±ä³ÉÎÒµÄÉçÍÅ£¬Í·Ïñ»á±ä³ÉÓÃ»§µÄÍ·Ïñ
 		if(user==null){
-			request.setAttribute("buttonValue", "ç™»é™†");
-			//è¿™æ˜¯é»˜è®¤çš„å¤´åƒ
+			request.setAttribute("buttonValue", "µÇÂ½");
+			//ÕâÊÇÄ¬ÈÏµÄÍ·Ïñ
 			request.setAttribute("userPicture", "img/49E89BEA3F1B3F1AC788F5F94C4A457F.png");
-			//æ­¤å¤„çš„#éœ€è¦ä¿®æ”¹ä¸ºç™»é™†é¡µé¢çš„url
-			request.setAttribute("buttonURL", "#");
-			request.setAttribute("welcome", "ç®¡ç†ç³»ç»Ÿç™»å½•");
+			//´Ë´¦µÄ#ĞèÒªĞŞ¸ÄÎªµÇÂ½Ò³ÃæµÄurl
+			request.setAttribute("buttonURL", "login1.jsp");
+			request.setAttribute("welcome", "¹ÜÀíÏµÍ³µÇÂ¼");
+			request.setAttribute("loginURL", "LoginServlet");
+			request.setAttribute("login", "µÇÂ½");
+			request.setAttribute("registerURL", "register1.jsp");
+			request.setAttribute("register", "×¢²á");
 		}else {
-			request.setAttribute("buttonValue", "æˆ‘çš„ç¤¾å›¢");
+			request.setAttribute("buttonValue", "ÎÒµÄÉçÍÅ");
 			request.setAttribute("userPicture", user.getPicture());
-			//æ­¤å¤„çš„#éœ€è¦ä¿®æ”¹ä¸ºæˆ‘çš„ç¤¾å›¢çš„url
+			//´Ë´¦µÄ#ĞèÒªĞŞ¸ÄÎªÎÒµÄÉçÍÅµÄurl
 			request.setAttribute("buttonURL", "#");
-			request.setAttribute("welcome", "ä½ å¥½ï¼Œæ¬¢è¿æ¥åˆ°ç¤¾å›¢ä¹‹å®¶");
+			request.setAttribute("welcome", user.getUsername()+" ÄãºÃ£¬»¶Ó­À´µ½ÉçÍÅÖ®¼Ò");
+			request.setAttribute("loginURL", "#");
+			request.setAttribute("login", user.getUsername());
+			//×¢ÏúµÄservlet
+			request.setAttribute("registerURL", "WriteOff");
+			request.setAttribute("register", "×¢Ïú");
 		}
 		CommunityDao communityDao = new CommunityDaoIm();
 		List<Community> communities = communityDao.queryAll();
@@ -83,7 +91,7 @@ public class HomePageServlet extends HttpServlet {
 		for (Community community : communities) {
 			communitiesHashMap.put(community, communityDao.queryAllUser(community.getId()).size());
 		}
-		//æŒ‰ç…§äººæ•°æ’åº
+		//°´ÕÕÈËÊıÅÅĞò
 		communities.sort(new Comparator<Community>() {
 			@Override
 			public int compare(Community o1, Community o2) {
@@ -99,24 +107,24 @@ public class HomePageServlet extends HttpServlet {
 				request.setAttribute("recommend_"+i, communities.get(i-1));
 			}
 			else {
-				//å¦‚æœç¤¾å›¢çš„æ•°é‡å°äº5å°±è®¾ç½®ä¸ºä¸œåŒ—å¤§å­¦çš„å›¾ç‰‡
+				//Èç¹ûÉçÍÅµÄÊıÁ¿Ğ¡ÓÚ5¾ÍÉèÖÃÎª¶«±±´óÑ§µÄÍ¼Æ¬
 				Community community = new Community();
-				community.setIntroduce("è¿™æ˜¯ä¸€æ‰€å¤§å­¦");
-				community.setPicture("community/ä¸œåŒ—å¤§å­¦.jpg");
+				community.setIntroduce("ÕâÊÇÒ»Ëù´óÑ§");
+				community.setPicture("community/¶«±±´óÑ§.jpg");
 				request.setAttribute("recommend_"+i, community);
 			}
 		}
 
-		request.getRequestDispatcher(JSP_PATH+"homepage.jsp").forward(request, response);
+		request.getRequestDispatcher("/homepage.jsp").forward(request, response);
 	}
 
 	/**
-	 * Initialization of the servlet. <br>
-	 *
-	 * @throws ServletException if an error occurs
-	 */
+		 * Initialization of the servlet. <br>
+		 *
+		 * @throws ServletException if an error occurs
+		 */
 	public void init() throws ServletException {
-
+		
 	}
 
 }

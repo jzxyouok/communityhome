@@ -1,14 +1,13 @@
 package action;
 
+import dao.UserCommInforDao;
 import dao.implement.Mysql;
+import dao.implement.UserCommInforDaoIm;
 import entity.Community;
 import entity.User;
 import util.GetCommunity;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -17,24 +16,43 @@ import java.util.*;
  * 推荐社团
  */
 public class RecommendCommunity extends GetCommunity{
+    private static final UserCommInforDao usercomdaoim = new UserCommInforDaoIm();
     private User user = null;
+    private List<Community> joined = null;
 
     public RecommendCommunity(User user){
         this.user = user;
+        joined = usercomdaoim.getAllJoinCommunities(user.getID());
         con = Mysql.getCon();
     }
 
     public List<Community> getCommunities()
     {
-        keywords = getHobbies();
+        {
+            String hobbies[] = getHobbies();
+            int len = hobbies.length;
+
+            if (hobbies == null){
+                return null;
+            }
+
+            keywords = new String[len + joined.size()];
+            System.arraycopy(hobbies,0,keywords,0,len);
+
+            for (Community temp:joined){
+                keywords[len++] = temp.getType();
+            }
+        }
+
+        /*keywords = getHobbies();
 
         if (keywords == null){
-            Mysql.closeCon();
             return null;
-        }
+        }*/
 
         dealString();
         Set<Integer> idset = makeCommunityIdSet();
+        screen(idset);
 
         return getCommunities(idset);
     }
@@ -65,16 +83,31 @@ public class RecommendCommunity extends GetCommunity{
         return null;
     }
 
+    /*删除已加入的社团*/
+    private void screen(Set<Integer> idset){
+        int id;
+
+        for (Community temp:joined){
+            id = temp.getId();
+
+            if (idset.contains(id)){
+                idset.remove(id);
+            }
+        }
+    }
+
 
     public static void main(String args[]){
-        /*User u = new User();
+
+
+        User u = new User();
         u.setID(1001);
 
         RecommendCommunity rc = new RecommendCommunity(u);
-        List<Community> cl = rc.RecommendCommunities();
+        List<Community> cl = rc.getCommunities();
 
         for (Community temp:cl){
             System.out.println(temp.getName());
-        }*/
+        }
     }
 }
